@@ -1,37 +1,50 @@
-const axios = require('axios');
-const tortest = require('tor-test');
+const req = require('axios').get;
+const tortest = require('tor-test').isTor;
+
+var key = process.env.IPAPI_KEY || null;
 
 ipinfo = {}
 
-// callback response: data (object), errors (boolean)
-ipinfo.lookup = (ip, cb, key = null) => {
-    data = {
+data = {
+    info: {
+        ipapi: null,
+        tortest: null
+    },
+    output: {},
+    errors: {
         error_ipapi: null,
-        error_tor: null
-    };
-
-    axios
-        .get('https://ipapi.co/' + ip + '/json/' + (key === null ? '': '?key=' + key))
-        .then(response => {
-            data = response.data;
-        })
-        .catch(err => {
-            console.log(err);
-            data.error_ipapi = err;
-        });
-
-    tortest
-        .isTor(ip, (err, tor) => {
-            if(err != null){
-                console.log(err);
-                data.error_tor = err;
-            }else{
-                data.Tor = tor;
-            }
-        });
-
-
-    cb(data, ((data.error_ipapi === null && data.error_tor === null) ? false : true));
+        error_tortest: null
+    }
 };
+
+checkAPI = (addr) => {
+    req('https://ipapi.co/' + addr + '/json/' + (key == null ? '' : '?key=' + key))
+        .then( response => {
+            data.output = response.data;
+        })
+        .catch( err => {
+            console.log(err);
+
+            data.info.ipapi = false;
+            data.errors.error_ipapi = err;
+    });
+};
+
+checkTor = (addr => {
+    tortest(addr, (err, isTor) => {
+        if(err){
+                data.info.tortest = false;
+                data.errors.error_tortest = err;
+            }
+
+            data.output.Tor = isTor;
+    });
+});
+
+ipinfo.lookup = (addr, cb) => {
+    checkAPI(addr);
+    checkTor(addr);
+    cb(data);
+}
 
 module.exports = ipinfo;
