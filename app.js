@@ -17,33 +17,35 @@ data = {
     }
 };
 
-checkAPI = (addr) => {
+checkAPI = (addr, next) => {
     req('https://ipapi.co/' + addr + '/json/' + (key == null ? '' : '?key=' + key))
         .then( response => {
             data.output = response.data;
+            next();
         })
         .catch( err => {
             console.log(err);
 
             data.info.ipapi = false;
             data.errors.error_ipapi = err;
+            next();
     });
 };
 
-checkTor = (addr => {
+checkTor = (addr, next) => {
     tortest(addr, (err, isTor) => {
         if(err){
                 data.info.tortest = false;
                 data.errors.error_tortest = err;
             }
 
-            data.output.Tor = isTor;
+            data.output.Tor = isTor; 
+            next();
     });
 });
 
 ipinfo.lookup = (addr, cb) => {
-    checkAPI(addr);
-    checkTor(addr);
+    checkAPI(addr, checkTor(addr, cb));
     cb(data);
 }
 
