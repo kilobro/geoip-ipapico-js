@@ -1,29 +1,32 @@
 {
-  "name": "geoip",
+  "name": "ip-info",
   "version": "1.0.0",
-  "description": "Package for retrieving GeoIP data using ipapi.co service.",
+  "description": "Package for retrieving GeoIP data using ipapi.co service, and checking if connection is coming from a Tor node.",
   "main": "app.js",
   "scripts": {
-    "start": "app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kilobro/geoip.js.git"
+    "url": "git+https://github.com/kilobro/ipinfo.js.git"
   },
   "keywords": [
     "geoip",
     "geoip2",
     "geoiplite",
     "ipapi",
-    "ipapico"
+    "ipapico",
+    "ipinfo",
+    "ip-info",
+    "ipinfojs",
+    "ip-infojs"
   ],
   "author": "kilobro",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kilobro/geoip.js/issues"
+    "url": "https://github.com/kilobro/ipinfo.js/issues"
   },
-  "homepage": "https://github.com/kilobro/geoip.js#readme",
+  "homepage": "https://github.com/kilobro/ipinfo.js#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "tor-test": "^0.2.1"
