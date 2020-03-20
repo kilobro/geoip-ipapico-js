@@ -1,0 +1,31 @@
+{
+  "name": "geoip",
+  "version": "1.0.0",
+  "description": "Package for retrieving GeoIP data using ipapi.co service.",
+  "main": "app.js",
+  "scripts": {
+    "start": "app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kilobro/geoip.js.git"
+  },
+  "keywords": [
+    "geoip",
+    "geoip2",
+    "geoiplite",
+    "ipapi",
+    "ipapico"
+  ],
+  "author": "kilobro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kilobro/geoip.js/issues"
+  },
+  "homepage": "https://github.com/kilobro/geoip.js#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "tor-test": "^0.2.1"
+  }
+}
