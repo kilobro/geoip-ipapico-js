@@ -11,7 +11,7 @@ ipinfo.lookup = (ip, cb, key = null) => {
     };
 
     axios
-        .get(`https://ipapi.co/` + ip + `/json/` (key === null ? '': `?key=` + key))
+        .get('https://ipapi.co/' + ip + '/json/' + (key === null ? '': '?key=' + key))
         .then(response => {
             data = response.data;
         })
