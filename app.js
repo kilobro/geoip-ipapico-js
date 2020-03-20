@@ -1,9 +1,10 @@
 const axios = require('axios');
 const tortest = require('tor-test');
 
+ipinfo = {}
 
 // callback response: data (object), errors (boolean)
-getInfo = (ip, cb, key = null) => {
+ipinfo.lookup = (ip, cb, key = null) => {
     data = {
         api_key = (key === null ? null : key),
         ipapi_err = null,
@@ -34,4 +35,4 @@ getInfo = (ip, cb, key = null) => {
     cb(data, (data.ipapi_err == null && data.torcheck_err == null ? false : true));
 };
 
-module.exports = { getInfo }
+module.exports = ipinfo;
