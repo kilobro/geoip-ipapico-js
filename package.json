@@ -1,6 +1,6 @@
 {
   "name": "ipinfo.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Package for retrieving GeoIP data using ipapi.co service, and checking if connection is coming from a Tor node.",
   "main": "app.js",
   "scripts": {

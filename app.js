@@ -6,7 +6,7 @@ ipinfo = {}
 // callback response: data (object), errors (boolean)
 ipinfo.lookup = (ip, cb, key = null) => {
     data = {
-        api_key = (key === null ? null : key),
+        api_key = key,
         ipapi_err = null,
         torcheck_err = null
     };
